@@ -1,26 +1,10 @@
 <template>
-  <div class="dupa">
-    <button></button>
-  </div>
+  <v-app id="inspire"> </v-app>
 </template>
-
 <script>
 export default {
-  name: "App",
-
-  data: () => ({
-    //
-  }),
+  data: () => ({}),
 };
 </script>
 
-<style lang="scss">
-.dupa {
-  background: black;
-  button {
-    width: 200px;
-    height: 200px;
-    background: white;
-  }
-}
-</style>
+<style lang="scss"></style>
