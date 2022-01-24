@@ -4,7 +4,7 @@
       <v-tab>Starters</v-tab>
       <v-tab>Mains</v-tab>
       <v-tab>Soups</v-tab>
-      <v-tab>Deserts test</v-tab>
+      <v-tab>Deserts</v-tab>
       <v-spacer></v-spacer>
     </v-tabs>
 
