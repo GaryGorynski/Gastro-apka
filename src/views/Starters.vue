@@ -20,7 +20,7 @@
               <v-icon dark> mdi-plus </v-icon>
             </v-btn>
           </template>
-
+          DUPA
           <v-card max-width="600">
             <v-col class="ml-10" cols="12" sm="6">
               <vcard-title class="text-h5">Add new recipe </vcard-title>
