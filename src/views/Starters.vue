@@ -20,7 +20,10 @@ export default {
     AddRecipe: AddRecipe,
   },
 
-  data: () => ({}),
+  data() {
+    return {};
+  },
+  methods: {},
 };
 </script>
 
