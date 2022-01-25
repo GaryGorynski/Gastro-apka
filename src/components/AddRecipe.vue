@@ -85,7 +85,6 @@ export default {
       title: "",
       description: "",
       ingredients: [],
-      quantity: [],
     },
     ingredient: "",
     quantity: "",
@@ -100,9 +99,8 @@ export default {
     },
 
     addIngredient: function () {
-      this.newRecipe.ingredients.push(this.ingredient),
-        console.log(this.newRecipe.ingredients);
-      this.newRecipe.quantity.push(this.quantity);
+      let ingredients = this.ingredient + " " + this.quantity;
+      this.newRecipe.ingredients.push(ingredients);
     },
   },
 };

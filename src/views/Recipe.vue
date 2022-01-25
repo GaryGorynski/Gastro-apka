@@ -7,24 +7,19 @@
         <v-row>
           <v-col cols="4" class="mt-16 ml-6">
             <v-sheet>
-              <v-card
-                class="mx-auto"
-                max-width="auto"
-                flat
-                v-for="ingredient in recipe.ingredients.ingredients"
-                :key="ingredient"
-              >
+              <v-card class="mx-auto" max-width="auto" flat>
                 <v-list-item>
                   <v-list-item-title class="text-h5 mb-1">
                     Ingredients
                   </v-list-item-title>
                 </v-list-item>
                 <v-divider></v-divider>
-                <v-list-item>
+                <v-list-item
+                  v-for="ingredients in recipe.ingredients"
+                  :key="ingredients.id"
+                >
                   <v-list-item-content>
-                    <v-list-item-title>{{
-                      recipe.ingredient
-                    }}</v-list-item-title>
+                    {{ ingredients }}
                   </v-list-item-content>
                 </v-list-item>
               </v-card></v-sheet
