@@ -2,12 +2,18 @@
   <v-app id="inspire">
     <v-main>
       <v-container class="my-16 ml-2">
-        <h1 class="test">Bechamel</h1>
+        <h1 class="test">{{ recipe.title }}</h1>
         <v-divider class="ml-10"></v-divider>
         <v-row>
           <v-col cols="4" class="mt-16 ml-6">
             <v-sheet>
-              <v-card class="mx-auto" max-width="auto" flat>
+              <v-card
+                class="mx-auto"
+                max-width="auto"
+                flat
+                v-for="ingredient in recipe.ingredients.ingredients"
+                :key="ingredient"
+              >
                 <v-list-item>
                   <v-list-item-title class="text-h5 mb-1">
                     Ingredients
@@ -16,33 +22,9 @@
                 <v-divider></v-divider>
                 <v-list-item>
                   <v-list-item-content>
-                    <v-list-item-title> </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-
-                <v-list-item>
-                  <v-list-item-content>
-                    <v-list-item-title>Three-line item</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-                <v-list-item>
-                  <v-list-item-content>
-                    <v-list-item-title>Three-line item</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-                <v-list-item>
-                  <v-list-item-content>
-                    <v-list-item-title>Three-line item</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-                <v-list-item>
-                  <v-list-item-content>
-                    <v-list-item-title>Three-line item</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-                <v-list-item>
-                  <v-list-item-content>
-                    <v-list-item-title>Three-line item</v-list-item-title>
+                    <v-list-item-title>{{
+                      recipe.ingredient
+                    }}</v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
               </v-card></v-sheet
@@ -58,19 +40,7 @@
                       <h1 style="font-weight: 300; font-size: 34px">Method</h1>
                       <v-divider></v-divider>
                     </v-list-item-title>
-                    reyhound divisely hello coldly fonwderfullGreyhound divisely
-                    hello coldly fonwderfullyGreyhound divisely hello coldly
-                    fonwderfullyGreyhound divisely hello coldly
-                    fonwderfullyGreyhound divisely hello coldly
-                    fonwderfullyGreyhound divisely hello coldly
-                    fonwderfullyGreyhound divisely hello coldlyreyhound divisely
-                    hello coldly fonwderfullGreyhound divisely hello coldly
-                    fonwderfullyGreyhound divisely helllyGreyhound divisely
-                    hello coldly fonwderfullyGreyhound divisely hello
-                    coldlyreyhound divisely hello coldly fonwderfullGreyhound
-                    divisely hello coldly fonwderfullyGreyhound divisely hello
-                    coldly fonwderfullyGreyhound divisely hellollyGreyhound
-                    divisely h
+                    {{ recipe.method }}
                   </v-list-item-content>
                 </v-list-item>
 
@@ -90,7 +60,15 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    recipe: function () {
+      return this.$store.state.starterRecipes.find(
+        (recipe) => recipe.title === this.$route.params.title
+      );
+    },
+  },
+};
 </script>
 
 <style lang="scss">

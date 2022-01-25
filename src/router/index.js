@@ -4,7 +4,7 @@ import Deserts from "../views/Deserts.vue";
 import Starters from "../views/Starters.vue";
 import Mains from "../views/Mains.vue";
 import Soups from "../views/Soups.vue";
-import Recipe from "../views/Recipe.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -29,9 +29,9 @@ const routes = [
     component: Deserts,
   },
   {
-    path: "/recipe",
+    path: "/recipe/:title",
     name: "Recipe",
-    component: Recipe,
+    component: () => import("../views/Recipe.vue"),
   },
 ];
 
