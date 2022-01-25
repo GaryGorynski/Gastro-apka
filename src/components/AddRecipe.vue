@@ -27,8 +27,8 @@
           <v-textarea label="Description" value=""></v-textarea>
         </v-col>
         <v-col class="d-flex ml-10" cols="12" sm="6">
-          <v-select :items="items" label="Ingredients" dense></v-select>
-          <v-select :items="items" label="Quantity" dense></v-select>
+          <v-select label="Ingredients" dense></v-select>
+          <v-select label="Quantity" dense></v-select>
         </v-col>
         <v-col class="ml-10 mb-5" cols="12" md="6">
           <v-textarea
