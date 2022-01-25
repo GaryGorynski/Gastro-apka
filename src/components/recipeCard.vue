@@ -16,10 +16,11 @@
           </v-list-item>
 
           <v-card-actions>
-            <v-btn text color="red"> Show recipe </v-btn>
+            <v-btn to="/recipe" text color="red"> Show recipe </v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
+      <router-view />
     </v-layout>
   </v-container>
 </template>

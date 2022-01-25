@@ -1,10 +1,10 @@
 <template>
   <v-app-bar app>
     <v-tabs align-with-title>
-      <v-tab>Starters</v-tab>
-      <v-tab>Mains</v-tab>
-      <v-tab>Soups</v-tab>
-      <v-tab>Deserts</v-tab>
+      <v-tab to="/">Starters</v-tab>
+      <v-tab to="/mains">Mains</v-tab>
+      <v-tab to="/soups">Soups</v-tab>
+      <v-tab to="/deserts">Deserts</v-tab>
       <v-spacer></v-spacer>
     </v-tabs>
 
