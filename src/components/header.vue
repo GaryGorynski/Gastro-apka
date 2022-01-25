@@ -6,6 +6,7 @@
       <v-tab to="/soups">Soups</v-tab>
       <v-tab to="/deserts">Deserts</v-tab>
       <v-spacer></v-spacer>
+      <div><p>dupas</p></div>
     </v-tabs>
 
     <v-btn depressed> Log in </v-btn>
