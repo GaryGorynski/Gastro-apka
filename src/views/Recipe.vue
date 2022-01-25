@@ -1,0 +1,101 @@
+<template>
+  <v-app id="inspire">
+    <v-main>
+      <v-container class="my-16 ml-2">
+        <h1 class="test">Bechamel</h1>
+        <v-divider class="ml-10"></v-divider>
+        <v-row>
+          <v-col cols="4" class="mt-16 ml-6">
+            <v-sheet>
+              <v-card class="mx-auto" max-width="auto" flat>
+                <v-list-item>
+                  <v-list-item-title class="text-h5 mb-1">
+                    Ingredients
+                  </v-list-item-title>
+                </v-list-item>
+                <v-divider></v-divider>
+                <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title> </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title>Three-line item</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title>Three-line item</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title>Three-line item</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title>Three-line item</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title>Three-line item</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-card></v-sheet
+            >
+          </v-col>
+
+          <v-col>
+            <v-sheet min-height="50vh">
+              <v-card class="mx-auto" max-width="1000" height="400" flat>
+                <v-list-item three-line>
+                  <v-list-item-content class="ml-10">
+                    <v-list-item-title class="text-h5 my-15">
+                      <h1 style="font-weight: 300; font-size: 34px">Method</h1>
+                      <v-divider></v-divider>
+                    </v-list-item-title>
+                    reyhound divisely hello coldly fonwderfullGreyhound divisely
+                    hello coldly fonwderfullyGreyhound divisely hello coldly
+                    fonwderfullyGreyhound divisely hello coldly
+                    fonwderfullyGreyhound divisely hello coldly
+                    fonwderfullyGreyhound divisely hello coldly
+                    fonwderfullyGreyhound divisely hello coldlyreyhound divisely
+                    hello coldly fonwderfullGreyhound divisely hello coldly
+                    fonwderfullyGreyhound divisely helllyGreyhound divisely
+                    hello coldly fonwderfullyGreyhound divisely hello
+                    coldlyreyhound divisely hello coldly fonwderfullGreyhound
+                    divisely hello coldly fonwderfullyGreyhound divisely hello
+                    coldly fonwderfullyGreyhound divisely hellollyGreyhound
+                    divisely h
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-card-actions class="ml-11">
+                  <v-btn depressed color="primary"> x1 </v-btn>
+                  <v-btn depressed color="primary"> x2 </v-btn>
+                  <v-btn depressed color="primary"> x5 </v-btn>
+                  <v-btn depressed color="primary"> x10 </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-sheet>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-main>
+  </v-app>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style lang="scss">
+.test {
+  margin-left: 40px;
+  font-weight: 400;
+}
+</style>
