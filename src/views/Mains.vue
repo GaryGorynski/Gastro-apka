@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import header from "../../components/header.vue";
-import recipeCard from "../../components/recipe/recipeCard.vue";
-import AddRecipe from "../../components/recipe/AddRecipe.vue";
+import header from "../components/header.vue";
+import recipeCard from "../components/recipeCard.vue";
+import AddRecipe from "../components/AddRecipe.vue";
 export default {
   components: {
     Header: header,
@@ -19,6 +19,7 @@ export default {
     AddRecipe: AddRecipe,
   },
   data: () => ({}),
+  methods: {},
 };
 </script>
 

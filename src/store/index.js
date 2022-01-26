@@ -13,7 +13,6 @@ export default new Vuex.Store({
   mutations: {
     ADD_RECIPE(state, recipe) {
       state.recipes.push(recipe);
-      console.log(state.recipes);
     },
   },
   actions: {},

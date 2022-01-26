@@ -96,7 +96,6 @@ export default {
     },
     addNewRecipe: function () {
       this.$store.commit("ADD_RECIPE", this.newRecipe);
-      console.log(this.newRecipe);
     },
 
     addIngredient: function () {
