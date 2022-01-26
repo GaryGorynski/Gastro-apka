@@ -5,25 +5,15 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    starterRecipes: [],
-    MainsRecipes: [],
-    DesertsRecipes: [],
-    SoupsRecipes: [],
+    recipes: [],
+    mainsRecipes: [],
     ingredients: ["Mleko", "Maslo"],
-    quantity: ["1g", "10g", "20g", "50g", "100g"],
+    quantity: ["1", "10", "20", "50", "100"],
   },
   mutations: {
-    ADD_STARTER(state, recipe) {
-      state.starterRecipes.push(recipe);
-    },
-    ADD_MAIN(state, recipe) {
-      state.MainsRecipes.push(recipe);
-    },
-    ADD_DESERT(state, recipe) {
-      state.DesertRecipes.push(recipe);
-    },
-    ADD_SOUP(state, recipe) {
-      state.SoupsRecipes.push(recipe);
+    ADD_RECIPE(state, recipe) {
+      state.recipes.push(recipe);
+      console.log(state.recipes);
     },
   },
   actions: {},

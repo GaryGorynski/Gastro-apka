@@ -5,7 +5,7 @@
         class="ma-1"
         xs16
         md2
-        v-for="recipe in $store.state.starterRecipes"
+        v-for="recipe in $store.state.recipes"
         :key="recipe.title"
       >
         <v-card class="mx-auto" max-width="344" outlined>
