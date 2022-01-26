@@ -75,6 +75,9 @@
 
 <script>
 export default {
+  mounted() {
+    this.quantity = this.recipe.quantity;
+  },
   data() {
     return {
       quantity: "",
