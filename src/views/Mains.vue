@@ -19,6 +19,7 @@ export default {
     AddRecipe: AddRecipe,
   },
   data: () => ({}),
+  methods: {},
 };
 </script>
 

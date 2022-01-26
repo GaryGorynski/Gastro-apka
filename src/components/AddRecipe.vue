@@ -85,6 +85,7 @@ export default {
       title: "",
       description: "",
       ingredients: [],
+      quantity: [],
     },
     ingredient: "",
     quantity: "",
@@ -94,13 +95,14 @@ export default {
       this.popupOpen = !this.popupOpen;
     },
     addNewRecipe: function () {
-      this.$store.commit("ADD_STARTER", this.newRecipe);
+      this.$store.commit("ADD_RECIPE", this.newRecipe);
       console.log(this.newRecipe);
     },
 
     addIngredient: function () {
-      let ingredients = this.ingredient + " " + this.quantity;
-      this.newRecipe.ingredients.push(ingredients);
+      // let ingredients = this.ingredient + " " + this.quantity;
+      this.newRecipe.ingredients.push(this.ingredient);
+      this.newRecipe.quantity.push(this.quantity);
     },
   },
 };
