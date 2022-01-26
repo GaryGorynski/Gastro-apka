@@ -60,9 +60,9 @@
         </v-col>
         <v-col class="ml-10 mb-5" cols="12" md="6">
           <v-select
-            label="Quantity"
-            :items="$store.state.quantity"
-            v-model="quantity"
+            label="Choose your tab"
+            :items="$store.state.tabs"
+            v-model="newRecipe.tabs"
             dense
           ></v-select>
           <v-textarea
@@ -89,11 +89,13 @@ export default {
       newRecipe: {
         title: "",
         description: "",
+        tabs: "",
         ingredients: [],
         quantity: [],
       },
       ingredient: "",
       quantity: "",
+
       dialog: false,
     };
   },
@@ -109,6 +111,7 @@ export default {
       // let ingredients = this.ingredient + " " + this.quantity;
       this.newRecipe.ingredients.push(this.ingredient);
       this.newRecipe.quantity.push(this.quantity);
+      console.log(this.$store.state.recipes);
     },
   },
 };
