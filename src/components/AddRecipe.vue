@@ -1,9 +1,8 @@
 <template>
   <div class="text-center">
-    <v-dialog width="550">
+    <v-dialog width="550" v-model="dialog">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-          @click="togglePopup"
           fixed
           right
           bottom
@@ -60,6 +59,12 @@
           </v-btn>
         </v-col>
         <v-col class="ml-10 mb-5" cols="12" md="6">
+          <v-select
+            label="Quantity"
+            :items="$store.state.quantity"
+            v-model="quantity"
+            dense
+          ></v-select>
           <v-textarea
             v-model="newRecipe.method"
             name="input-7-1"
@@ -70,7 +75,7 @@
         </v-col>
         <v-card-actions>
           <v-btn color="success" @click="addNewRecipe"> Add recipe </v-btn>
-          <v-btn color="error"> Close</v-btn>
+          <v-btn color="error" @click="dialog = false"> Close</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -79,23 +84,25 @@
 
 <script>
 export default {
-  data: () => ({
-    popupOpen: false,
-    newRecipe: {
-      title: "",
-      description: "",
-      ingredients: [],
-      quantity: [],
-    },
-    ingredient: "",
-    quantity: "",
-  }),
+  data() {
+    return {
+      newRecipe: {
+        title: "",
+        description: "",
+        ingredients: [],
+        quantity: [],
+      },
+      ingredient: "",
+      quantity: "",
+      dialog: false,
+    };
+  },
   methods: {
     togglePopup: function () {
       this.popupOpen = !this.popupOpen;
     },
     addNewRecipe: function () {
-      this.$store.commit("ADD_RECIPE", this.newRecipe);
+      this.$store.commit("ADD_RECIPE", { ...this.newRecipe });
     },
 
     addIngredient: function () {
