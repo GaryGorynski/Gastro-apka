@@ -51,16 +51,16 @@
                 </v-list-item>
 
                 <v-card-actions class="ml-11">
-                  <v-btn @click="multiplyOne" depressed color="primary">
+                  <v-btn @click="multiply(1)" depressed color="primary">
                     x1
                   </v-btn>
-                  <v-btn @click="multiplyTwo" depressed color="primary">
+                  <v-btn @click="multiply(2)" depressed color="primary">
                     x2
                   </v-btn>
-                  <v-btn @click="multiplyFive" depressed color="primary">
+                  <v-btn @click="multiply(5)" depressed color="primary">
                     x5
                   </v-btn>
-                  <v-btn @click="multiplyTen" depressed color="primary">
+                  <v-btn @click="multiply(10)" depressed color="primary">
                     x10
                   </v-btn>
                 </v-card-actions>
@@ -84,25 +84,9 @@ export default {
     };
   },
   methods: {
-    multiplyOne: function () {
-      let quantity = this.recipe.quantity.map((number) => number * 1);
+    multiply: function (multiply) {
+      let quantity = this.recipe.quantity.map((number) => number * multiply);
       this.quantity = quantity;
-      console.log(this.quantity);
-    },
-    multiplyTwo: function () {
-      let quantity = this.recipe.quantity.map((number) => number * 2);
-      this.quantity = quantity;
-      console.log(this.quantity);
-    },
-    multiplyFive: function () {
-      let quantity = this.recipe.quantity.map((number) => number * 5);
-      this.quantity = quantity;
-      console.log(this.quantity);
-    },
-    multiplyTen: function () {
-      let quantity = this.recipe.quantity.map((number) => number * 10);
-      this.quantity = quantity;
-      console.log(this.quantity);
     },
   },
   computed: {
