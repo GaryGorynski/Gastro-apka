@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     recipes: [],
-    tabs: ["Starter", "Main", "Desert", "Soup"],
+    tabs: ["Starters", "Mains", "Deserts", "Soups"],
     ingredients: ["Mleko", "Maslo"],
     quantity: ["1", "10", "20", "50", "100"],
   },
