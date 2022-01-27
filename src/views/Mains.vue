@@ -9,7 +9,7 @@
             xs16
             md2
             v-for="recipe in recipesFiltered"
-            :key="recipe.tabs"
+            :key="recipe.id"
           >
             <v-card class="mx-auto" max-width="344" outlined>
               <v-list-item three-line>
