@@ -17,7 +17,12 @@
                   <div class="text-overline mb-4">
                     {{ recipe.tabs }}
                     <span
-                      ><v-icon color="red" class="mb-2 ml-11" size="24">
+                      ><v-icon
+                        @click="deleteButton(recipe)"
+                        color="red"
+                        class="mb-1 mr-1"
+                        size="22"
+                      >
                         mdi-delete
                       </v-icon>
                     </span>
@@ -56,8 +61,9 @@ export default {
   },
   data: () => ({}),
   methods: {
-    test: function () {
-      console.log(this.recipesFiltered);
+    deleteButton: function (target) {
+      this.$store.commit("DELETE_RECIPE", target);
+      console.log(this.$store.state.recipes);
     },
   },
   computed: {

@@ -122,6 +122,7 @@ export default {
         ingredients: [],
         quantity: [],
         method: "",
+        id: "",
       },
       ingredient: "",
       quantity: "",
@@ -145,6 +146,8 @@ export default {
   methods: {
     addNewRecipe: function () {
       this.$v.newRecipe.$touch();
+      const id = Math.floor(Math.random() * 100000);
+      this.newRecipe.id = id;
       if (this.$v.$invalid) {
         this.submitStatus = "ERROR";
       } else {
