@@ -14,7 +14,19 @@
             <v-card class="mx-auto" max-width="344" outlined>
               <v-list-item three-line>
                 <v-list-item-content>
-                  <div class="text-overline mb-4">{{ recipe.tabs }}</div>
+                  <div class="text-overline mb-4">
+                    {{ recipe.tabs }}
+                    <span
+                      ><v-icon
+                        @click="deleteButton(recipe)"
+                        color="red"
+                        class="mb-1 mr-1"
+                        size="22"
+                      >
+                        mdi-delete
+                      </v-icon>
+                    </span>
+                  </div>
                   <v-list-item-title class="text-h5 mb-1">
                     {{ recipe.title }}
                   </v-list-item-title>
@@ -45,6 +57,11 @@ export default {
   components: {
     Header: header,
     AddRecipe: AddRecipe,
+  },
+  methods: {
+    deleteButton: function (target) {
+      this.$store.commit("DELETE_RECIPE", target);
+    },
   },
   data: () => ({}),
   computed: {

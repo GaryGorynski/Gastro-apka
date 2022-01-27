@@ -20,6 +20,12 @@ export default new Vuex.Store({
     ADD_RECIPE(state, recipe) {
       state.recipes.push(recipe);
     },
+    DELETE_RECIPE(state, recipe) {
+      let filtered = state.recipes.filter(
+        (staterecipe) => staterecipe.id !== recipe.id
+      );
+      state.recipes = filtered;
+    },
   },
   actions: {},
   modules: {},
