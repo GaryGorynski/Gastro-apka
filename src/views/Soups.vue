@@ -23,7 +23,6 @@
                   }}</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
-
               <v-card-actions>
                 <v-btn :to="`/recipe/${recipe.title}`" text color="red">
                   Show recipe
@@ -41,20 +40,16 @@
 
 <script>
 import header from "../components/header.vue";
-//import recipeCard from "../components/recipeCard.vue";
 import AddRecipe from "../components/AddRecipe.vue";
 export default {
   components: {
     Header: header,
-    //  RecipeCard: recipeCard,
     AddRecipe: AddRecipe,
   },
   data: () => ({}),
   computed: {
     recipesFiltered: function () {
-      return this.$store.state.recipes.filter(
-        (recipe) => recipe.tabs === "Soup"
-      );
+      return this.$store.getters.test("Soup");
     },
   },
 };

@@ -12,8 +12,8 @@ export default new Vuex.Store({
   },
   getters: {
     // ...
-    test: (state) => {
-      return state.recipes.filter((recipe) => recipe.tabs === recipe.tabs);
+    test: (state) => (tab) => {
+      return state.recipes.filter((recipe) => recipe.tabs === tab);
     },
   },
   mutations: {
