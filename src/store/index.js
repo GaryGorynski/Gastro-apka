@@ -15,7 +15,11 @@ export default new Vuex.Store({
     filteredRecipes: (state) => (tab) => {
       return state.recipes.filter((recipe) => recipe.tabs === tab);
     },
+    recipeRouted: (state) => (title) => {
+      return state.recipes.find((recipe) => recipe.title === title);
+    },
   },
+
   mutations: {
     ADD_RECIPE(state, recipe) {
       state.recipes.push(recipe);
