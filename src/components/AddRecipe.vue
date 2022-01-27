@@ -30,9 +30,7 @@
               style="height: 50px"
             ></v-text-field>
           </div>
-          <p class="text-success" v-if="submitStatus === 'OK'">
-            {{ statusSuccess }}
-          </p>
+
           <p class="text-danger" v-if="submitStatus === 'ERROR'">
             {{ statusError }}
           </p>
@@ -42,9 +40,6 @@
             label="Description"
             v-model="$v.newRecipe.description.$model"
           ></v-text-field>
-          <p class="text-success" v-if="submitStatus === 'OK'">
-            {{ statusSuccess }}
-          </p>
           <p class="text-danger" v-if="submitStatus === 'ERROR'">
             {{ statusError }}
           </p>
@@ -63,7 +58,14 @@
             v-model="quantity"
             dense
           ></v-select>
-          <v-btn @click="addIngredient" fab dark small color="success">
+          <v-btn
+            class="ml-5"
+            @click="addIngredient"
+            fab
+            dark
+            small
+            color="success"
+          >
             <v-icon dark> mdi-plus </v-icon>
           </v-btn>
         </v-col>
@@ -74,9 +76,6 @@
             v-model="newRecipe.tabs"
             dense
           ></v-select>
-          <p class="text-success" v-if="submitStatus === 'OK'">
-            {{ statusSuccess }}
-          </p>
           <p class="text-danger" v-if="submitStatus === 'ERROR'">
             {{ statusError }}
           </p>
@@ -90,9 +89,6 @@
             no-resize
           >
           </v-textarea>
-          <p class="text-success" v-if="submitStatus === 'OK'">
-            {{ statusSuccess }}
-          </p>
           <p class="text-danger" v-if="submitStatus === 'ERROR'">
             {{ statusError }}
           </p>
@@ -126,7 +122,6 @@ export default {
       },
       ingredient: "",
       quantity: "",
-      statusSuccess: "Thanks for your submission!",
       statusError: "Please fill the form correctly.",
       submitStatus: null,
       dialog: false,
@@ -156,29 +151,22 @@ export default {
         this.newRecipe.description = "";
         this.newRecipe.tabs = null;
         this.newRecipe.method = "";
-        this.submitStatus = "OK";
-        this.statusSuccess = "";
+        this.submitStatus = null;
         this.statusError = "";
         this.dialog = false;
       }
     },
 
     addIngredient: function () {
-      // let ingredients = this.ingredient + " " + this.quantity;
       this.newRecipe.ingredients.push(this.ingredient);
       this.newRecipe.quantity.push(this.quantity);
     },
+    dialogCleanup: function () {},
   },
 };
 </script>
 
 <style>
-.text-success {
-  color: green;
-  font-weight: 300;
-  font-size: 14px;
-}
-
 .text-danger {
   color: red;
   font-weight: 300;

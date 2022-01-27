@@ -1,5 +1,13 @@
 <template>
   <v-app id="inspire">
+    <v-app-bar app>
+      <v-tabs align-with-title>
+        <v-tab to="/">Recipes</v-tab>
+        <v-spacer></v-spacer>
+      </v-tabs>
+
+      <v-btn depressed> Log in </v-btn>
+    </v-app-bar>
     <v-main>
       <v-container class="my-16 ml-2">
         <h1 class="test">{{ recipe.title }}</h1>
