@@ -37,9 +37,7 @@
                 </v-list-item>
 
                 <v-list-item v-for="quantity in quantity" :key="quantity.id">
-                  <v-list-item-content>
-                    {{ quantity }}
-                  </v-list-item-content>
+                  <v-list-item-content> {{ quantity }} g </v-list-item-content>
                 </v-list-item>
               </v-card></v-sheet
             >
