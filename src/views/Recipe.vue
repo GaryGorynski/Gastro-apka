@@ -99,9 +99,7 @@ export default {
   },
   computed: {
     recipe: function () {
-      return this.$store.state.recipes.find(
-        (recipe) => recipe.title === this.$route.params.title
-      );
+      return this.$store.getters.recipeRouted(this.$route.params.title);
     },
   },
 };
