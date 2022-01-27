@@ -12,7 +12,7 @@ export default new Vuex.Store({
   },
   getters: {
     // ...
-    test: (state) => (tab) => {
+    filteredRecipes: (state) => (tab) => {
       return state.recipes.filter((recipe) => recipe.tabs === tab);
     },
   },

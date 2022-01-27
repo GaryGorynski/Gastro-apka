@@ -14,7 +14,15 @@
             <v-card class="mx-auto" max-width="344" outlined>
               <v-list-item three-line>
                 <v-list-item-content>
-                  <div class="text-overline mb-4">{{ recipe.tabs }}</div>
+                  <div class="text-overline mb-4">
+                    {{ recipe.tabs }}
+                    <span
+                      ><v-icon color="red" class="mb-2 ml-11" size="24">
+                        mdi-delete
+                      </v-icon>
+                    </span>
+                  </div>
+
                   <v-list-item-title class="text-h5 mb-1">
                     {{ recipe.title }}
                   </v-list-item-title>
@@ -47,10 +55,14 @@ export default {
     AddRecipe: AddRecipe,
   },
   data: () => ({}),
-  methods: {},
+  methods: {
+    test: function () {
+      console.log(this.recipesFiltered);
+    },
+  },
   computed: {
     recipesFiltered: function () {
-      return this.$store.getters.test("Main");
+      return this.$store.getters.filteredRecipes("Main");
     },
   },
 };
