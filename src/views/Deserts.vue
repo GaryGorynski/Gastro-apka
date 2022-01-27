@@ -49,7 +49,7 @@ export default {
   data: () => ({}),
   computed: {
     recipesFiltered: function () {
-      return this.$store.getters.test("Desert");
+      return this.$store.getters.filteredRecipes("Desert");
     },
   },
 };

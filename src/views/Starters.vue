@@ -54,7 +54,7 @@ export default {
   methods: {},
   computed: {
     recipesFiltered: function () {
-      return this.$store.getters.test("Starter");
+      return this.$store.getters.filteredRecipes("Starter");
     },
   },
 };
