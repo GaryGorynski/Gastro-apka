@@ -154,9 +154,9 @@ export default {
         this.newRecipe.tabs = null;
         this.newRecipe.method = "";
         this.submitStatus = "OK";
-        this.dialog = false;
         this.statusSuccess = "";
         this.statusError = "";
+        this.dialog = false;
       }
     },
 

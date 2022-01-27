@@ -14,7 +14,15 @@
             <v-card class="mx-auto" max-width="344" outlined>
               <v-list-item three-line>
                 <v-list-item-content>
-                  <div class="text-overline mb-4">{{ recipe.tabs }}</div>
+                  <div class="text-overline mb-4">
+                    {{ recipe.tabs }}
+                    <span
+                      ><v-icon color="red" class="mb-2 ml-11" size="24">
+                        mdi-delete
+                      </v-icon>
+                    </span>
+                  </div>
+
                   <v-list-item-title class="text-h5 mb-1">
                     {{ recipe.title }}
                   </v-list-item-title>
@@ -39,22 +47,22 @@
 </template>
 
 <script>
-import header from "../components/header.vue";
-import AddRecipe from "../components/AddRecipe.vue";
-
+import header from "../../components/header.vue";
+import AddRecipe from "../../components/AddRecipe.vue";
 export default {
   components: {
     Header: header,
     AddRecipe: AddRecipe,
   },
-
-  data() {
-    return {};
+  data: () => ({}),
+  methods: {
+    test: function () {
+      console.log(this.recipesFiltered);
+    },
   },
-  methods: {},
   computed: {
     recipesFiltered: function () {
-      return this.$store.getters.filteredRecipes("Starter");
+      return this.$store.getters.filteredRecipes("Main");
     },
   },
 };

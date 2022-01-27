@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Deserts from "../views/Deserts.vue";
-import Starters from "../views/Starters.vue";
-import Mains from "../views/Mains.vue";
-import Soups from "../views/Soups.vue";
+import Deserts from "../views/tabs/Deserts.vue";
+import Starters from "../views/tabs/Starters.vue";
+import Mains from "../views/tabs/Mains.vue";
+import Soups from "../views/tabs/Soups.vue";
 
 Vue.use(VueRouter);
 

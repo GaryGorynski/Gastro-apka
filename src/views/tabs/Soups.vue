@@ -39,8 +39,8 @@
 </template>
 
 <script>
-import header from "../components/header.vue";
-import AddRecipe from "../components/AddRecipe.vue";
+import header from "../../components/header.vue";
+import AddRecipe from "../../components/AddRecipe.vue";
 export default {
   components: {
     Header: header,
@@ -49,7 +49,7 @@ export default {
   data: () => ({}),
   computed: {
     recipesFiltered: function () {
-      return this.$store.getters.filteredRecipes("Desert");
+      return this.$store.getters.filteredRecipes("Soup");
     },
   },
 };
