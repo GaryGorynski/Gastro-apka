@@ -20,28 +20,33 @@
       <v-card max-width="650">
         <v-col class="ml-10" cols="12" sm="6">
           <v-card-title class="text-h5">Add new recipe </v-card-title>
-          <v-text-field
-            label="Title"
-            v-model="$v.newRecipe.title.$model"
-            style="height: 50px"
-          ></v-text-field>
+          <div
+            class="form-group"
+            :class="{ 'form-group--error': $v.newRecipe.title.$error }"
+          >
+            <v-text-field
+              label="Title"
+              v-model="$v.newRecipe.title.$model"
+              style="height: 50px"
+            ></v-text-field>
+          </div>
           <p class="text-success" v-if="submitStatus === 'OK'">
-            Thanks for your submission!
+            {{ statusSuccess }}
           </p>
           <p class="text-danger" v-if="submitStatus === 'ERROR'">
-            Please fill the form correctly.
+            {{ statusError }}
           </p>
         </v-col>
         <v-col class="ml-10" cols="12" md="6">
-          <v-textarea
+          <v-text-field
             label="Description"
             v-model="$v.newRecipe.description.$model"
-          ></v-textarea>
+          ></v-text-field>
           <p class="text-success" v-if="submitStatus === 'OK'">
-            Thanks for your submission!
+            {{ statusSuccess }}
           </p>
           <p class="text-danger" v-if="submitStatus === 'ERROR'">
-            Please fill the form correctly.
+            {{ statusError }}
           </p>
         </v-col>
         <v-col class="d-flex ml-9" cols="12" sm="6">
@@ -70,10 +75,10 @@
             dense
           ></v-select>
           <p class="text-success" v-if="submitStatus === 'OK'">
-            Thanks for your submission!
+            {{ statusSuccess }}
           </p>
           <p class="text-danger" v-if="submitStatus === 'ERROR'">
-            Please fill the form correctly.
+            {{ statusError }}
           </p>
           <v-textarea
             v-model="$v.newRecipe.method.$model"
@@ -86,10 +91,10 @@
           >
           </v-textarea>
           <p class="text-success" v-if="submitStatus === 'OK'">
-            Thanks for your submission!
+            {{ statusSuccess }}
           </p>
           <p class="text-danger" v-if="submitStatus === 'ERROR'">
-            Please fill the form correctly.
+            {{ statusError }}
           </p>
         </v-col>
 
@@ -105,6 +110,9 @@
 <script>
 import { required } from "vuelidate/lib/validators";
 export default {
+  mounted() {
+    if (this.$store.state.recipes.length < 1) this.dialog = true;
+  },
   data() {
     return {
       newRecipe: {
@@ -117,6 +125,8 @@ export default {
       },
       ingredient: "",
       quantity: "",
+      statusSuccess: "Thanks for your submission!",
+      statusError: "Please fill the form correctly.",
       submitStatus: null,
       dialog: false,
     };
@@ -129,6 +139,7 @@ export default {
       description: { required },
 
       method: { required },
+      tabs: { required },
     },
   },
   methods: {
@@ -143,6 +154,9 @@ export default {
         this.newRecipe.tabs = null;
         this.newRecipe.method = "";
         this.submitStatus = "OK";
+        this.dialog = false;
+        this.statusSuccess = "";
+        this.statusError = "";
       }
     },
 
