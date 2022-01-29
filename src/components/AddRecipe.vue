@@ -59,7 +59,9 @@
               v-model="quantity"
               dense
             ></v-select>
-            <v-btn depressed color="success" small> Add ingredient </v-btn>
+            <v-btn @click="addIngredient" depressed color="success" small>
+              Add ingredient
+            </v-btn>
           </v-col>
           <v-col md="6" sm="6">
             <v-select
