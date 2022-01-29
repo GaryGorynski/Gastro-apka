@@ -6,10 +6,6 @@
         class="d-flex d-sm-none"
       ></v-app-bar-nav-icon>
 
-      <v-spacer></v-spacer>
-
-      <v-btn class="btn" to="/" depressed> Log in </v-btn>
-
       <template v-slot:extension>
         <v-tabs v-model="tab" align-with-title class="d-none d-sm-flex">
           <v-tabs-slider></v-tabs-slider>
@@ -19,6 +15,9 @@
           <v-tab to="/soups">Soups</v-tab>
           <v-tab to="/deserts">Deserts</v-tab>
         </v-tabs>
+        <v-spacer></v-spacer>
+
+        <v-btn to="/" depressed> Login </v-btn>
       </template>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute temporary>
@@ -43,8 +42,4 @@ export default {
 };
 </script>
 
-<style>
-.btn {
-  margin-top: 80px;
-}
-</style>
+<style></style>
