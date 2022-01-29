@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar app>
+    <v-app-bar app height="20">
       <v-app-bar-nav-icon
         @click="drawer = true"
         class="d-flex d-sm-none"
@@ -8,7 +8,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn to="/" depressed> Log in </v-btn>
+      <v-btn class="btn" to="/" depressed> Log in </v-btn>
 
       <template v-slot:extension>
         <v-tabs v-model="tab" align-with-title class="d-none d-sm-flex">
@@ -43,4 +43,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.btn {
+  margin-top: 80px;
+}
+</style>
