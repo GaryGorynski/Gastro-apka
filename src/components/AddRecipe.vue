@@ -18,86 +18,79 @@
       </template>
 
       <v-card max-width="650">
-        <v-col class="ml-10" cols="12" sm="6">
-          <v-card-title class="text-h5">Add new recipe </v-card-title>
-          <div
-            class="form-group"
-            :class="{ 'form-group--error': $v.newRecipe.title.$error }"
-          >
+        <v-sheet>
+          <v-col md="12" sm="6">
+            <v-card-title class="text-h5">Add new recipe </v-card-title>
+            <div
+              class="form-group"
+              :class="{ 'form-group--error': $v.newRecipe.title.$error }"
+            >
+              <v-text-field
+                label="Title"
+                v-model="$v.newRecipe.title.$model"
+                style="height: 50px"
+              ></v-text-field>
+            </div>
+
+            <p class="text-danger" v-if="submitStatus === 'ERROR'">
+              {{ statusError }}
+            </p>
+          </v-col>
+          <v-col md="12" sm="6">
             <v-text-field
-              label="Title"
-              v-model="$v.newRecipe.title.$model"
-              style="height: 50px"
+              label="Description"
+              v-model="$v.newRecipe.description.$model"
             ></v-text-field>
-          </div>
+            <p class="text-danger" v-if="submitStatus === 'ERROR'">
+              {{ statusError }}
+            </p>
+          </v-col>
+          <v-col md="12" sm="6">
+            <v-select
+              label="Ingredients"
+              :items="$store.state.ingredients"
+              v-model="ingredient"
+              dense
+            ></v-select>
 
-          <p class="text-danger" v-if="submitStatus === 'ERROR'">
-            {{ statusError }}
-          </p>
-        </v-col>
-        <v-col class="ml-10" cols="12" md="6">
-          <v-text-field
-            label="Description"
-            v-model="$v.newRecipe.description.$model"
-          ></v-text-field>
-          <p class="text-danger" v-if="submitStatus === 'ERROR'">
-            {{ statusError }}
-          </p>
-        </v-col>
-        <v-col class="d-flex ml-9" cols="12" sm="6">
-          <v-select
-            label="Ingredients"
-            :items="$store.state.ingredients"
-            v-model="ingredient"
-            dense
-          ></v-select>
+            <v-select
+              label="Quantity"
+              :items="$store.state.quantity"
+              v-model="quantity"
+              dense
+            ></v-select>
+            <v-btn depressed color="success" small> Add ingredient </v-btn>
+          </v-col>
+          <v-col md="6" sm="6">
+            <v-select
+              label="Choose your tab"
+              :items="$store.state.tabs"
+              v-model="newRecipe.tabs"
+              dense
+            ></v-select>
+            <p class="text-danger" v-if="submitStatus === 'ERROR'">
+              {{ statusError }}
+            </p>
+            <v-textarea
+              v-model="$v.newRecipe.method.$model"
+              name="input-7-1"
+              label="Method"
+              style="height: 150px"
+              md="6"
+              sm="6"
+              no-resize
+            >
+            </v-textarea>
+            <p class="text-danger" v-if="submitStatus === 'ERROR'">
+              {{ statusError }}
+            </p>
+          </v-col>
 
-          <v-select
-            label="Quantity"
-            :items="$store.state.quantity"
-            v-model="quantity"
-            dense
-          ></v-select>
-          <v-btn
-            class="ml-5"
-            @click="addIngredient"
-            fab
-            dark
-            small
-            color="success"
-          >
-            <v-icon dark> mdi-plus </v-icon>
-          </v-btn>
-        </v-col>
-        <v-col class="ml-10 mb-5" cols="12" md="6">
-          <v-select
-            label="Choose your tab"
-            :items="$store.state.tabs"
-            v-model="newRecipe.tabs"
-            dense
-          ></v-select>
-          <p class="text-danger" v-if="submitStatus === 'ERROR'">
-            {{ statusError }}
-          </p>
-          <v-textarea
-            v-model="$v.newRecipe.method.$model"
-            @keyup.enter="addNewRecipe"
-            name="input-7-1"
-            label="Method"
-            style="height: 130px"
-            class="mb-10"
-            no-resize
-          >
-          </v-textarea>
-          <p class="text-danger" v-if="submitStatus === 'ERROR'">
-            {{ statusError }}
-          </p>
-        </v-col>
-
-        <v-card-actions>
-          <v-btn color="success" @click="addNewRecipe"> Add recipe </v-btn>
-          <v-btn color="error" @click="dialog = false"> Close</v-btn>
-        </v-card-actions>
+          <v-card-actions>
+            <v-btn color="success" @click="addNewRecipe"> Add recipe </v-btn>
+            <v-btn color="error" @click="dialog = false"> Close</v-btn>
+          </v-card-actions>
+        </v-sheet>
       </v-card>
     </v-dialog>
   </div>

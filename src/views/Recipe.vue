@@ -2,20 +2,20 @@
   <v-app id="inspire">
     <v-app-bar app>
       <v-tabs align-with-title>
-        <v-tab to="/">Recipes</v-tab>
+        <v-tab to="/Starters">Recipes</v-tab>
         <v-spacer></v-spacer>
       </v-tabs>
 
       <v-btn depressed> Log in </v-btn>
     </v-app-bar>
     <v-main>
-      <v-container class="my-16 ml-2">
-        <h1 class="test">{{ recipe.title }}</h1>
-        <v-divider class="ml-10"></v-divider>
+      <v-container class="my-16">
+        <h1 class="test ml-3">{{ recipe.title }}</h1>
+        <v-divider></v-divider>
         <v-row>
-          <v-col cols="4" class="mt-16 ml-6">
+          <v-col cols="12" class="mt-16">
             <v-sheet style="display: flex">
-              <v-card class="mx-auto" max-width="60%" flat>
+              <v-card width="200px" flat>
                 <v-list-item>
                   <v-list-item-title class="text-h5 mb-1">
                     Ingredients
@@ -44,11 +44,11 @@
           </v-col>
 
           <v-col>
-            <v-sheet min-height="50vh">
-              <v-card class="mx-auto" max-width="1000" height="400" flat>
+            <v-sheet min-height="50vh" class="mr-16">
+              <v-card class="mx-auto ml-0" max-width="1000" height="400" flat>
                 <v-list-item three-line>
-                  <v-list-item-content class="ml-10">
-                    <v-list-item-title class="text-h5 my-15">
+                  <v-list-item-content>
+                    <v-list-item-title class="text-h5 mt-15">
                       <h1 style="font-weight: 300; font-size: 34px">Method</h1>
                       <v-divider></v-divider>
                     </v-list-item-title>
@@ -56,7 +56,7 @@
                   </v-list-item-content>
                 </v-list-item>
 
-                <v-card-actions class="ml-11">
+                <v-card-actions>
                   <v-btn @click="multiply(1)" depressed color="primary">
                     x1
                   </v-btn>
