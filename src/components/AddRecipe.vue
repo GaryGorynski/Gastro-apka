@@ -100,9 +100,18 @@
 
 <script>
 import { required } from "vuelidate/lib/validators";
+// import axios from "axios";
 export default {
   mounted() {
     if (this.$store.state.recipes.length < 1) this.dialog = true;
+    this.$store.dispatch("getIngredients");
+    /* axios
+      .get("https://api.airtable.com/v0/appcWXfVQzYfiEUpm/ingredients", {
+        headers: {
+          Authorization: "Bearer keynWocdalGuKcaAt",
+        },
+      })
+      .then((res) => this.ingredientPush(res)); */
   },
   data() {
     return {
@@ -114,6 +123,7 @@ export default {
         quantity: [],
         method: "",
         id: "",
+        //dupa: [],
       },
       ingredient: "",
       quantity: "",
@@ -142,6 +152,24 @@ export default {
         this.submitStatus = "ERROR";
       } else {
         this.$store.commit("ADD_RECIPE", { ...this.newRecipe });
+        /*  axios
+          .post(
+            "https://api.airtable.com/v0/appcWXfVQzYfiEUpm/ingredients",
+            {
+              fields: {
+                name: "Tescik",
+              },
+            },
+            {
+              headers: {
+                Authorization: "Bearer keynWocdalGuKcaAt",
+                "Content-Type": "application/json",
+              }, 
+            } 
+          ) 
+          .then((res) => {
+            console.log(res);
+          }); */
         this.newRecipe.title = "";
         this.newRecipe.description = "";
         this.newRecipe.tabs = null;
@@ -155,7 +183,11 @@ export default {
       this.newRecipe.ingredients.push(this.ingredient);
       this.newRecipe.quantity.push(this.quantity);
     },
-    dialogCleanup: function () {},
+
+    /*   ingredientPush(res) {
+      let dupa = res.data.records.map((record) => record.fields.name);
+      this.$store.state.ingredients.push(...dupa);
+    }, */
   },
 };
 </script>

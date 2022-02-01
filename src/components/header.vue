@@ -17,6 +17,7 @@
         </v-tabs>
         <v-spacer></v-spacer>
 
+        <v-btn to="/register" depressed> Register </v-btn>
         <v-btn to="/" depressed> Login </v-btn>
       </template>
     </v-app-bar>
