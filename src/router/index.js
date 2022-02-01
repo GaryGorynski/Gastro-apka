@@ -5,6 +5,7 @@ import Starters from "../views/tabs/Starters.vue";
 import Mains from "../views/tabs/Mains.vue";
 import Soups from "../views/tabs/Soups.vue";
 import Login from "../views/tabs/Login.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -13,11 +14,13 @@ const routes = [
     name: "login",
     component: Login,
   },
+
   {
     path: "/starters",
     name: "Starters",
     component: Starters,
   },
+
   {
     path: "/mains",
     name: "Mains",

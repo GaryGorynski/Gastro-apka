@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-
+import { fetchIngredients } from "../../services/ingredientsService";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -30,7 +30,19 @@ export default new Vuex.Store({
       );
       state.recipes = filtered;
     },
+    SET_INGREDIENTS(state, ingredients) {
+      state.ingredients = ingredients;
+    },
   },
-  actions: {},
+  actions: {
+    getIngredients({ commit }) {
+      fetchIngredients().then((response) => {
+        commit(
+          "SET_INGREDIENTS",
+          response.data.records.map((record) => record.fields.name)
+        );
+      });
+    },
+  },
   modules: {},
 });
