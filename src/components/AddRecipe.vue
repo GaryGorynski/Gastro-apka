@@ -13,7 +13,7 @@
           v-bind="attrs"
           v-on="on"
         >
-          <v-icon dark> mdi-plus </v-icon>
+          <v-icon @click="testt" dark> mdi-plus </v-icon>
         </v-btn>
       </template>
 
@@ -48,8 +48,8 @@
           <v-col md="12" sm="6">
             <v-select
               label="Ingredients"
-              :items="$store.state.ingredients"
-              v-model="ingredient"
+              :items="options"
+              v-model="selected"
               dense
             ></v-select>
 
@@ -100,18 +100,11 @@
 
 <script>
 import { required } from "vuelidate/lib/validators";
-// import axios from "axios";
+import axios from "axios";
 export default {
   mounted() {
     if (this.$store.state.recipes.length < 1) this.dialog = true;
     this.$store.dispatch("getIngredients");
-    /* axios
-      .get("https://api.airtable.com/v0/appcWXfVQzYfiEUpm/ingredients", {
-        headers: {
-          Authorization: "Bearer keynWocdalGuKcaAt",
-        },
-      })
-      .then((res) => this.ingredientPush(res)); */
   },
   data() {
     return {
@@ -123,8 +116,9 @@ export default {
         quantity: [],
         method: "",
         id: "",
-        //dupa: [],
       },
+      selected: null,
+      options: [{ value: "null", text: "null" }],
       ingredient: "",
       quantity: "",
       statusError: "Please fill the form correctly.",
@@ -152,24 +146,28 @@ export default {
         this.submitStatus = "ERROR";
       } else {
         this.$store.commit("ADD_RECIPE", { ...this.newRecipe });
-        /*  axios
+
+        axios
           .post(
-            "https://api.airtable.com/v0/appcWXfVQzYfiEUpm/ingredients",
+            "https://api.airtable.com/v0/appcWXfVQzYfiEUpm/recipes",
             {
               fields: {
-                name: "Tescik",
+                title: this.newRecipe.title,
+                description: this.newRecipe.description,
+                ingredients: this.newRecipe.ingredients,
+                method: this.newRecipe.method,
               },
             },
             {
               headers: {
                 Authorization: "Bearer keynWocdalGuKcaAt",
                 "Content-Type": "application/json",
-              }, 
-            } 
-          ) 
+              },
+            }
+          )
           .then((res) => {
             console.log(res);
-          }); */
+          });
         this.newRecipe.title = "";
         this.newRecipe.description = "";
         this.newRecipe.tabs = null;
@@ -180,14 +178,18 @@ export default {
     },
 
     addIngredient: function () {
-      this.newRecipe.ingredients.push(this.ingredient);
+      this.newRecipe.ingredients.push(this.selected);
       this.newRecipe.quantity.push(this.quantity);
     },
-
-    /*   ingredientPush(res) {
-      let dupa = res.data.records.map((record) => record.fields.name);
-      this.$store.state.ingredients.push(...dupa);
-    }, */
+    testt() {
+      this.options = this.test;
+      console.log(this.options);
+    },
+  },
+  computed: {
+    test() {
+      return this.$store.getters.ingredientsFiltered;
+    },
   },
 };
 </script>

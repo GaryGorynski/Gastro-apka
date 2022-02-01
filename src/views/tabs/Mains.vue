@@ -9,20 +9,19 @@
 </template>
 
 <script>
-import header from "../../components/header.vue";
-import AddRecipe from "../../components/AddRecipe.vue";
+import Header from "@/components/Header.vue";
+import AddRecipe from "@/components/AddRecipe.vue";
 import RecipeCard from "./RecipeCard.vue";
 export default {
   components: {
-    Header: header,
-    AddRecipe: AddRecipe,
-    RecipeCard: RecipeCard,
+    Header,
+    AddRecipe,
+    RecipeCard,
   },
   data: () => ({}),
   methods: {
     deleteButton: function (target) {
       this.$store.commit("DELETE_RECIPE", target);
-      console.log(this.$store.state.recipes);
     },
   },
   computed: {
