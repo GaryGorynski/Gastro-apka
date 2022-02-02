@@ -9,11 +9,12 @@
           class="mx-2"
           fab
           dark
+          @click="testt"
           color="green"
           v-bind="attrs"
           v-on="on"
         >
-          <v-icon @click="testt" dark> mdi-plus </v-icon>
+          <v-icon dark> mdi-plus </v-icon>
         </v-btn>
       </template>
 
@@ -48,15 +49,15 @@
           <v-col md="12" sm="6">
             <v-select
               label="Ingredients"
-              :items="options"
-              v-model="selected"
+              :items="ingredientSelect.options"
+              v-model="ingredientSelect.selected"
               dense
             ></v-select>
 
             <v-select
               label="Quantity"
-              :items="$store.state.quantity"
-              v-model="quantity"
+              :items="quantitySelect.options"
+              v-model="quantitySelect.selected"
               dense
             ></v-select>
             <v-btn @click="addIngredient" depressed color="success" small>
@@ -106,6 +107,7 @@ export default {
   mounted() {
     if (this.$store.state.recipes.length < 1) this.dialog = true;
     this.getIngredients();
+    this.getQuantity();
   },
   data() {
     return {
@@ -118,25 +120,21 @@ export default {
         method: "",
         id: "",
       },
-      selected: null,
-      options: [{ value: "null", text: "null" }],
-      ingredient: "",
-      quantity: "",
+      ingredientSelect: {
+        selected: null,
+        options: [{ value: "null", text: "null" }],
+      },
+      quantitySelect: {
+        selected: null,
+        options: [{ value: "null", text: "null" }],
+      },
+
       statusError: "Please fill the form correctly.",
       submitStatus: null,
       dialog: false,
     };
   },
-  validations: {
-    newRecipe: {
-      title: {
-        required,
-      },
-      description: { required },
-      method: { required },
-      tabs: { required },
-    },
-  },
+
   methods: {
     addNewRecipe: function () {
       this.$v.newRecipe.$touch();
@@ -154,9 +152,13 @@ export default {
               fields: {
                 title: this.newRecipe.title,
                 description: this.newRecipe.description,
-                ingredients: this.newRecipe.ingredients.map(
+                Ingredients: this.newRecipe.ingredients.map(
                   (ingredient) => ingredient.id
                 ),
+                quantities: this.newRecipe.quantity.map(
+                  (quantity) => quantity.id
+                ),
+
                 method: this.newRecipe.method,
               },
             },
@@ -180,20 +182,33 @@ export default {
     },
 
     addIngredient: function () {
-      this.newRecipe.ingredients.push(this.selected);
-      this.newRecipe.quantity.push(this.quantity);
+      this.newRecipe.ingredients.push(this.ingredientSelect.selected);
+      this.newRecipe.quantity.push(this.quantitySelect.selected);
     },
     testt() {
-      this.options = this.test;
-      console.log(this.options);
+      this.ingredientSelect.options = this.computedIngredients;
+      this.quantitySelect.options = this.computedQuantity;
     },
 
-    ...mapGetters("ingredients", ["ingredientsFiltered"]),
-    ...mapActions("ingredients", ["getIngredients"]),
+    ...mapGetters("ingredients", ["ingredientsFiltered", "quantityFiltered"]),
+    ...mapActions("ingredients", ["getIngredients", "getQuantity"]),
   },
   computed: {
-    test() {
+    computedIngredients() {
       return this.ingredientsFiltered();
+    },
+    computedQuantity() {
+      return this.quantityFiltered();
+    },
+  },
+  validations: {
+    newRecipe: {
+      title: {
+        required,
+      },
+      description: { required },
+      method: { required },
+      tabs: { required },
     },
   },
 };
