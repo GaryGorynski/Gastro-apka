@@ -27,7 +27,7 @@
                   :key="ingredients.id"
                 >
                   <v-list-item-content>
-                    {{ ingredients }}
+                    {{ ingredients.name }}
                   </v-list-item-content>
                 </v-list-item>
               </v-card>

@@ -7,7 +7,10 @@ export default {
   getters: {
     ingredientsFiltered: (state) => {
       return state.ingredients.map((ingredient) => ({
-        value: ingredient.id,
+        value: {
+          id: ingredient.id,
+          name: ingredient.name,
+        },
         text: ingredient.name,
       }));
     },
