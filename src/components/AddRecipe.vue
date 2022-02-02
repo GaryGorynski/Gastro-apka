@@ -100,11 +100,12 @@
 
 <script>
 import { required } from "vuelidate/lib/validators";
+import { mapGetters, mapActions } from "vuex";
 import axios from "axios";
 export default {
   mounted() {
     if (this.$store.state.recipes.length < 1) this.dialog = true;
-    this.$store.dispatch("getIngredients");
+    this.getIngredients();
   },
   data() {
     return {
@@ -132,7 +133,6 @@ export default {
         required,
       },
       description: { required },
-
       method: { required },
       tabs: { required },
     },
@@ -174,6 +174,7 @@ export default {
         this.newRecipe.method = "";
         this.submitStatus = null;
         this.dialog = false;
+        console.log(this.newRecipe.ingredients);
       }
     },
 
@@ -185,10 +186,13 @@ export default {
       this.options = this.test;
       console.log(this.options);
     },
+
+    ...mapGetters("ingredients", ["ingredientsFiltered"]),
+    ...mapActions("ingredients", ["getIngredients"]),
   },
   computed: {
     test() {
-      return this.$store.getters.ingredientsFiltered;
+      return this.ingredientsFiltered();
     },
   },
 };

@@ -1,5 +1,6 @@
 import { fetchIngredients } from "../../services/ingredientsService";
 export default {
+  namespaced: true,
   state: {
     ingredients: [],
   },
