@@ -154,7 +154,9 @@ export default {
               fields: {
                 title: this.newRecipe.title,
                 description: this.newRecipe.description,
-                ingredients: this.newRecipe.ingredients,
+                ingredients: this.newRecipe.ingredients.map(
+                  (ingredient) => ingredient.id
+                ),
                 method: this.newRecipe.method,
               },
             },
@@ -174,7 +176,6 @@ export default {
         this.newRecipe.method = "";
         this.submitStatus = null;
         this.dialog = false;
-        console.log(this.newRecipe.ingredients);
       }
     },
 
