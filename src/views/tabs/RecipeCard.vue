@@ -51,11 +51,10 @@ export default {
   mounted() {
     this.getRecipes(this.$route.name);
   },
-  updated() {
-    this.getRecipes(this.$route.name);
-  },
+
   methods: {
     deleteButton: function (target) {
+      this.UPDATE_RECIPE(target);
       axios
         .delete(
           `https://api.airtable.com/v0/appcWXfVQzYfiEUpm/recipes/${target.id}`,
@@ -69,16 +68,13 @@ export default {
       console.log(target.id);
     },
     ...mapActions("recipes", ["getRecipes"]),
-    ...mapMutations("recipes", ["DELETE_RECIPE"]),
+    ...mapMutations("recipes", ["UPDATE_RECIPE"]),
   },
   computed: {
     test() {
       return this.testt();
     },
     ...mapGetters("recipes", ["testt"]),
-    /* recipesFiltered: function () {
-      return this.$store.getters.filteredRecipes(this.$route.name);
-    }, */
   },
 };
 </script>

@@ -42,5 +42,11 @@ export default {
         })
         .then((response) => console.log(response));
     },
+    UPDATE_RECIPE(state, recipe) {
+      let filtered = state.recipes.filter(
+        (staterecipe) => staterecipe.id !== recipe.id
+      );
+      state.recipes = filtered;
+    },
   },
 };
