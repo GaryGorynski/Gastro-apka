@@ -5,14 +5,14 @@
         class="ma-1"
         xs16
         md2
-        v-for="(recipe, index) in recipesFiltered"
+        v-for="(recipe, index) in testt"
         :key="index"
       >
         <v-card class="mx-auto" outlined>
           <v-list-item three-line>
             <v-list-item-content>
               <div class="text-overline mb-4">
-                {{ recipe.tabs }}
+                {{ recipe.fields.tab }}
                 <span
                   ><v-icon
                     @click="deleteButton(recipe)"
@@ -25,15 +25,15 @@
                 </span>
               </div>
               <v-list-item-title class="text-h5 mb-1">
-                {{ recipe.title }}
+                {{ recipe.fields.title }}
               </v-list-item-title>
               <v-list-item-subtitle>{{
-                recipe.description
+                recipe.fields.description
               }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
           <v-card-actions>
-            <v-btn :to="`/recipe/${recipe.title}`" text color="red">
+            <v-btn :to="`/recipe/${recipe.fields.title}`" text color="red">
               Show recipe
             </v-btn>
           </v-card-actions>
@@ -45,16 +45,25 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
+  mounted() {
+    this.getRecipes(this.$route.name);
+  },
   methods: {
     deleteButton: function (target) {
       this.$store.commit("DELETE_RECIPE", target);
     },
+    ...mapActions(["getRecipes"]),
   },
   computed: {
-    recipesFiltered: function () {
-      return this.$store.getters.filteredRecipes(this.$route.name);
+    test() {
+      return this.testt();
     },
+    ...mapGetters(["testt"]),
+    /* recipesFiltered: function () {
+      return this.$store.getters.filteredRecipes(this.$route.name);
+    }, */
   },
 };
 </script>
