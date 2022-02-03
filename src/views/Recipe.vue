@@ -83,6 +83,7 @@
 export default {
   mounted() {
     this.quantity = this.recipe.quantity;
+    console.log(this.$route.params);
   },
   data() {
     return {

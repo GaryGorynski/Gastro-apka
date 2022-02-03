@@ -143,7 +143,7 @@ export default {
       if (this.$v.$invalid) {
         this.submitStatus = "ERROR";
       } else {
-        this.$store.commit("ADD_RECIPE", { ...this.newRecipe });
+        //     this.$store.commit("ADD_RECIPE", { ...this.newRecipe });
 
         axios
           .post(
@@ -160,6 +160,7 @@ export default {
                 ),
 
                 method: this.newRecipe.method,
+                tab: this.newRecipe.tabs,
               },
             },
             {
