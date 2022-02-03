@@ -14,6 +14,9 @@ import AddRecipe from "@/components/AddRecipe.vue";
 import RecipeCard from "./RecipeCard.vue";
 
 export default {
+  mounted() {
+    console.log(this.$store.state.recipes);
+  },
   components: {
     Header,
     AddRecipe,

@@ -45,22 +45,37 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters, mapMutations } from "vuex";
+import axios from "axios";
 export default {
   mounted() {
     this.getRecipes(this.$route.name);
   },
+  updated() {
+    this.getRecipes(this.$route.name);
+  },
   methods: {
     deleteButton: function (target) {
-      this.$store.commit("DELETE_RECIPE", target);
+      axios
+        .delete(
+          `https://api.airtable.com/v0/appcWXfVQzYfiEUpm/recipes/${target.id}`,
+          {
+            headers: {
+              Authorization: "Bearer keynWocdalGuKcaAt",
+            },
+          }
+        )
+        .then((response) => console.log(response));
+      console.log(target.id);
     },
-    ...mapActions(["getRecipes"]),
+    ...mapActions("recipes", ["getRecipes"]),
+    ...mapMutations("recipes", ["DELETE_RECIPE"]),
   },
   computed: {
     test() {
       return this.testt();
     },
-    ...mapGetters(["testt"]),
+    ...mapGetters("recipes", ["testt"]),
     /* recipesFiltered: function () {
       return this.$store.getters.filteredRecipes(this.$route.name);
     }, */
