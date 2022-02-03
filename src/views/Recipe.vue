@@ -10,7 +10,7 @@
     </v-app-bar>
     <v-main>
       <v-container class="my-16">
-        <h1 class="test ml-3">{{ recipe.title }}</h1>
+        <h1 class="test ml-3">{{ recipe.fields.title }}</h1>
         <v-divider></v-divider>
         <v-row>
           <v-col cols="12" class="mt-16">
@@ -23,11 +23,11 @@
                 </v-list-item>
 
                 <v-list-item
-                  v-for="ingredients in recipe.ingredients"
+                  v-for="ingredients in recipe.fields.ingredientName"
                   :key="ingredients.id"
                 >
                   <v-list-item-content>
-                    {{ ingredients.name }}
+                    {{ ingredients }}
                   </v-list-item-content>
                 </v-list-item>
               </v-card>
@@ -36,7 +36,10 @@
                   <v-list-item-title class="text-h5 mb-1"> </v-list-item-title>
                 </v-list-item>
 
-                <v-list-item v-for="quantity in quantity" :key="quantity.id">
+                <v-list-item
+                  v-for="quantity in recipe.fields.quantities"
+                  :key="quantity.id"
+                >
                   <v-list-item-content> {{ quantity }} g </v-list-item-content>
                 </v-list-item>
               </v-card></v-sheet
@@ -52,7 +55,7 @@
                       <h1 style="font-weight: 300; font-size: 34px">Method</h1>
                       <v-divider></v-divider>
                     </v-list-item-title>
-                    {{ recipe.method }}
+                    {{ recipe.fields.method }}
                   </v-list-item-content>
                 </v-list-item>
 
@@ -80,26 +83,24 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
-  mounted() {
-    this.quantity = this.recipe.quantity;
-    console.log(this.$route.params);
+  created() {
+    this.recipe = this.recipeRouted(this.$route.params.title);
+    console.log(this.recipe);
   },
   data() {
     return {
-      quantity: "",
+      recipe: "",
     };
   },
   methods: {
     multiply: function (multiply) {
-      let quantity = this.recipe.quantity.map((number) => number * multiply);
-      this.quantity = quantity;
+      this.recipe.fields.quantities.map((number) => number * multiply);
     },
   },
   computed: {
-    recipe: function () {
-      return this.$store.getters.recipeRouted(this.$route.params.title);
-    },
+    ...mapGetters("recipes", ["recipeRouted"]),
   },
 };
 </script>
