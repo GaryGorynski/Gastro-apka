@@ -1,4 +1,5 @@
-import { fetchRecipes } from "@/services/recipeService";
+import { fetchRecipesService } from "@/services/recipeService";
+import { postRecipesService } from "@/services/postRecipeService";
 import axios from "axios";
 export default {
   namespaced: true,
@@ -15,11 +16,16 @@ export default {
   },
   actions: {
     getRecipes({ commit }, data) {
-      fetchRecipes(data).then((response) => {
+      fetchRecipesService(data).then((response) => {
         commit(
           "SET_RECIPES",
           response.data.records.filter((record) => record)
         );
+      });
+    },
+    postRecipes({ commit }, data) {
+      postRecipesService(data).then((response) => {
+        commit("POST_RECIPE_UPDATE", response.data);
       });
     },
   },
@@ -45,7 +51,7 @@ export default {
       );
       state.recipes = filtered;
     },
-    FETCH_RECIPE_UPDATE(state, recipe) {
+    POST_RECIPE_UPDATE(state, recipe) {
       state.recipes.push(recipe);
     },
   },
