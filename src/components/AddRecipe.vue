@@ -106,8 +106,8 @@
 
 <script>
 import { required } from "vuelidate/lib/validators";
-import { mapGetters, mapActions, mapMutations } from "vuex";
-import axios from "axios";
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   mounted() {
     if (this.$store.state.recipes.length < 1) this.dialog = true;
@@ -148,34 +148,20 @@ export default {
       if (this.$v.$invalid) {
         this.submitStatus = "ERROR";
       } else {
-        axios
-          .post(
-            "https://api.airtable.com/v0/appcWXfVQzYfiEUpm/recipes",
-            {
-              fields: {
-                title: this.newRecipe.title,
-                description: this.newRecipe.description,
-                Ingredients: this.newRecipe.ingredients.map(
-                  (ingredient) => ingredient.id
-                ),
-                quantities: this.newRecipe.quantity.map(
-                  (quantity) => quantity.id
-                ),
-                method: this.newRecipe.method,
-                tab: this.newRecipe.tabs,
-              },
-            },
-            {
-              headers: {
-                Authorization: "Bearer keynWocdalGuKcaAt",
-                "Content-Type": "application/json",
-              },
-            }
-          )
-          .then((res) => this.FETCH_RECIPE_UPDATE(res.data))
-          .catch((err) => {
-            alert(err);
-          });
+        let recipes = {
+          fields: {
+            title: this.newRecipe.title,
+            description: this.newRecipe.description,
+            Ingredients: this.newRecipe.ingredients.map(
+              (ingredient) => ingredient.id
+            ),
+            quantities: this.newRecipe.quantity.map((quantity) => quantity.id),
+            method: this.newRecipe.method,
+            tab: this.newRecipe.tabs,
+          },
+        };
+        this.postRecipes(recipes);
+
         this.newRecipe.title = "";
         this.newRecipe.description = "";
         this.newRecipe.tabs = null;
@@ -200,7 +186,7 @@ export default {
 
     ...mapGetters("ingredients", ["ingredientsFiltered", "quantityFiltered"]),
     ...mapActions("ingredients", ["getIngredients", "getQuantity"]),
-    ...mapMutations("recipes", ["FETCH_RECIPE_UPDATE"]),
+    ...mapActions("recipes", ["postRecipes"]),
   },
   computed: {
     computedIngredients() {

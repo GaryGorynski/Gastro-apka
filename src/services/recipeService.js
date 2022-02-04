@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const fetchRecipes = (data) =>
+export const fetchRecipesService = (data) =>
   axios.get(
     `https://api.airtable.com/v0/appcWXfVQzYfiEUpm/recipes?filterByFormula=SEARCH({tab}, "${data}")`,
     {
