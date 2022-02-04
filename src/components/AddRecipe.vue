@@ -9,7 +9,7 @@
           class="mx-2"
           fab
           dark
-          @click="testt"
+          @click="updateData"
           color="green"
           v-bind="attrs"
           v-on="on"
@@ -184,7 +184,7 @@ export default {
       this.newRecipe.ingredients.push(this.ingredientSelect.selected);
       this.newRecipe.quantity.push(this.quantitySelect.selected);
     },
-    testt() {
+    updateData() {
       this.ingredientSelect.options = this.computedIngredients;
       this.quantitySelect.options = this.computedQuantity;
     },
