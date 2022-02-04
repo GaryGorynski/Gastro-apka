@@ -166,6 +166,8 @@ export default {
         this.newRecipe.description = "";
         this.newRecipe.tabs = null;
         this.newRecipe.method = "";
+        this.ingredientSelect.selected = "";
+        this.quantitySelect.selected = "";
         this.submitStatus = null;
         this.dialog = false;
       }
