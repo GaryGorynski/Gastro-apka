@@ -141,7 +141,7 @@ export default {
   },
 
   methods: {
-    addNewRecipe: function () {
+    addNewRecipe() {
       this.$v.newRecipe.$touch();
       const id = Math.floor(Math.random() * 100000);
       this.newRecipe.id = id;
@@ -161,19 +161,11 @@ export default {
           },
         };
         this.postRecipes(recipes);
-
-        this.newRecipe.title = "";
-        this.newRecipe.description = "";
-        this.newRecipe.tabs = null;
-        this.newRecipe.method = "";
-        this.ingredientSelect.selected = "";
-        this.quantitySelect.selected = "";
-        this.submitStatus = null;
-        this.dialog = false;
+        this.clearDialog();
       }
     },
 
-    addIngredient: function () {
+    addIngredient() {
       if (this.quantitySelect.selected === null) {
         this.quantitySelect.selected === alert("Choose quantity");
       } else {
@@ -184,6 +176,18 @@ export default {
     updateData() {
       this.ingredientSelect.options = this.computedIngredients;
       this.quantitySelect.options = this.computedQuantity;
+    },
+    clearDialog() {
+      this.newRecipe.title = "";
+      this.newRecipe.description = "";
+      this.newRecipe.tabs = null;
+      this.newRecipe.method = "";
+      this.ingredientSelect.selected = null;
+      this.newRecipe.ingredients = [];
+      this.newRecipe.quantity = [];
+      this.quantitySelect.selected = null;
+      this.submitStatus = null;
+      this.dialog = false;
     },
 
     ...mapGetters("ingredients", ["ingredientsFiltered", "quantityFiltered"]),
