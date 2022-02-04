@@ -29,6 +29,13 @@ export default {
         commit("POST_RECIPE_UPDATE", response.data);
       });
     },
+    deleteRecipe({ commit }, data) {
+      deleteRecipeService(data)
+        .then((response) => {
+          commit("AFTER_DELETE_UPDATE", response.data.id);
+        })
+        .catch((err) => console.log(err));
+    },
   },
   mutations: {
     SET_RECIPES(state, recipes) {
@@ -37,9 +44,7 @@ export default {
     ADD_RECIPE(state, recipe) {
       state.recipes.push(recipe);
     },
-    DELETE_RECIPE(recipe) {
-      deleteRecipeService(recipe).then((response) => console.log(response));
-    },
+
     AFTER_DELETE_UPDATE(state, recipeid) {
       let filtered = state.recipes.filter(
         (staterecipe) => staterecipe.id !== recipeid

@@ -45,8 +45,8 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapMutations } from "vuex";
-import axios from "axios";
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   mounted() {
     this.getRecipes(this.$route.name);
@@ -54,22 +54,9 @@ export default {
 
   methods: {
     deleteButton: function (target) {
-      axios
-        .delete(
-          `https://api.airtable.com/v0/appcWXfVQzYfiEUpm/recipes/${target.id}`,
-          {
-            headers: {
-              Authorization: "Bearer keynWocdalGuKcaAt",
-            },
-          }
-        )
-        .then((response) => this.AFTER_DELETE_UPDATE(response.data.id))
-        .catch((err) => {
-          alert(err);
-        });
+      this.deleteRecipe(target.id);
     },
-    ...mapActions("recipes", ["getRecipes"]),
-    ...mapMutations("recipes", ["AFTER_DELETE_UPDATE"]),
+    ...mapActions("recipes", ["getRecipes", "deleteRecipe"]),
   },
   computed: {
     recipesFiltered() {
