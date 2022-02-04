@@ -1,6 +1,7 @@
 import { fetchRecipesService } from "@/services/recipeService";
 import { postRecipesService } from "@/services/postRecipeService";
-import axios from "axios";
+import { deleteRecipeService } from "@/services/deleteRecipeService";
+
 export default {
   namespaced: true,
   state: {
@@ -37,13 +38,7 @@ export default {
       state.recipes.push(recipe);
     },
     DELETE_RECIPE(recipe) {
-      axios
-        .delete(`https://api.airtable.com/v0/appcWXfVQzYfiEUpm/"${recipe}"`, {
-          headers: {
-            Authorization: "Bearer keynWocdalGuKcaAt",
-          },
-        })
-        .then((response) => console.log(response));
+      deleteRecipeService(recipe).then((response) => console.log(response));
     },
     AFTER_DELETE_UPDATE(state, recipeid) {
       let filtered = state.recipes.filter(
