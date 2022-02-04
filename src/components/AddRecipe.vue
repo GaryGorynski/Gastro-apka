@@ -143,8 +143,6 @@ export default {
       if (this.$v.$invalid) {
         this.submitStatus = "ERROR";
       } else {
-        //     this.$store.commit("ADD_RECIPE", { ...this.newRecipe });
-
         axios
           .post(
             "https://api.airtable.com/v0/appcWXfVQzYfiEUpm/recipes",
@@ -158,7 +156,6 @@ export default {
                 quantities: this.newRecipe.quantity.map(
                   (quantity) => quantity.id
                 ),
-
                 method: this.newRecipe.method,
                 tab: this.newRecipe.tabs,
               },
