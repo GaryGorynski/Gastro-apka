@@ -49,21 +49,26 @@
           <v-col md="12" sm="6">
             <v-select
               label="Ingredients"
-              :items="ingredientSelect.options"
-              v-model="ingredientSelect.selected"
+              :items="$v.ingredientSelect.options.$model"
+              v-model="$v.ingredientSelect.selected.$model"
               dense
             ></v-select>
-
+            <p class="text-danger" v-if="submitStatus === 'ERROR'">
+              {{ statusError }}
+            </p>
             <v-select
               label="Quantity"
-              :items="quantitySelect.options"
-              v-model="quantitySelect.selected"
+              :items="$v.quantitySelect.options.$model"
+              v-model="$v.quantitySelect.selected.$model"
               dense
             ></v-select>
             <v-btn @click="addIngredient" depressed color="success" small>
               Add ingredient
             </v-btn>
           </v-col>
+          <p class="text-danger" v-if="submitStatus === 'ERROR'">
+            {{ statusError }}
+          </p>
           <v-col md="6" sm="6">
             <v-select
               label="Choose your tab"
@@ -181,8 +186,12 @@ export default {
     },
 
     addIngredient: function () {
-      this.newRecipe.ingredients.push(this.ingredientSelect.selected);
-      this.newRecipe.quantity.push(this.quantitySelect.selected);
+      if (this.quantitySelect.selected === null) {
+        this.quantitySelect.selected === alert("Choose quantity");
+      } else {
+        this.newRecipe.ingredients.push(this.ingredientSelect.selected);
+        this.newRecipe.quantity.push(this.quantitySelect.selected);
+      }
     },
     updateData() {
       this.ingredientSelect.options = this.computedIngredients;
@@ -209,6 +218,14 @@ export default {
       description: { required },
       method: { required },
       tabs: { required },
+    },
+    ingredientSelect: {
+      selected: { required },
+      options: { required },
+    },
+    quantitySelect: {
+      selected: { required },
+      options: { required },
     },
   },
 };
