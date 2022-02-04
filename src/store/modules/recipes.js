@@ -6,13 +6,13 @@ export default {
     recipes: [],
   },
   getters: {
-    filteredRecipes: (state) => (tab) => {
+    /* filteredRecipes: (state) => (tab) => {
       return state.recipes.filter((recipe) => recipe.tabs === tab);
-    },
+    }, */
     recipeRouted: (state) => (title) => {
       return state.recipes.find((recipe) => recipe.fields.title === title);
     },
-    testt: (state) => {
+    filteredRecipes: (state) => {
       return state.recipes.map((recipe) => recipe);
     },
   },
@@ -42,9 +42,9 @@ export default {
         })
         .then((response) => console.log(response));
     },
-    UPDATE_RECIPE(state, recipe) {
+    UPDATE_RECIPE(state, recipeid) {
       let filtered = state.recipes.filter(
-        (staterecipe) => staterecipe.id !== recipe.id
+        (staterecipe) => staterecipe.id !== recipeid
       );
       state.recipes = filtered;
     },

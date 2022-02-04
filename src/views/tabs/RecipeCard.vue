@@ -5,7 +5,7 @@
         class="ma-1"
         xs16
         md2
-        v-for="(recipe, index) in testt"
+        v-for="(recipe, index) in filteredRecipes"
         :key="index"
       >
         <v-card class="mx-auto" outlined>
@@ -54,7 +54,6 @@ export default {
 
   methods: {
     deleteButton: function (target) {
-      this.UPDATE_RECIPE(target);
       axios
         .delete(
           `https://api.airtable.com/v0/appcWXfVQzYfiEUpm/recipes/${target.id}`,
@@ -64,17 +63,19 @@ export default {
             },
           }
         )
-        .then((response) => console.log(response));
-      console.log(target.id);
+        .then((response) => this.UPDATE_RECIPE(response.data.id))
+        .catch((err) => {
+          alert(err);
+        });
     },
     ...mapActions("recipes", ["getRecipes"]),
     ...mapMutations("recipes", ["UPDATE_RECIPE"]),
   },
   computed: {
-    test() {
-      return this.testt();
+    recipesFiltered() {
+      return this.filteredRecipes();
     },
-    ...mapGetters("recipes", ["testt"]),
+    ...mapGetters("recipes", ["filteredRecipes"]),
   },
 };
 </script>
