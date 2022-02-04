@@ -63,13 +63,13 @@ export default {
             },
           }
         )
-        .then((response) => this.UPDATE_RECIPE(response.data.id))
+        .then((response) => this.AFTER_DELETE_UPDATE(response.data.id))
         .catch((err) => {
           alert(err);
         });
     },
     ...mapActions("recipes", ["getRecipes"]),
-    ...mapMutations("recipes", ["UPDATE_RECIPE"]),
+    ...mapMutations("recipes", ["AFTER_DELETE_UPDATE"]),
   },
   computed: {
     recipesFiltered() {

@@ -101,7 +101,7 @@
 
 <script>
 import { required } from "vuelidate/lib/validators";
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 import axios from "axios";
 export default {
   mounted() {
@@ -167,8 +167,9 @@ export default {
               },
             }
           )
-          .then((res) => {
-            console.log(res);
+          .then((res) => this.FETCH_RECIPE_UPDATE(res.data))
+          .catch((err) => {
+            alert(err);
           });
         this.newRecipe.title = "";
         this.newRecipe.description = "";
@@ -190,6 +191,7 @@ export default {
 
     ...mapGetters("ingredients", ["ingredientsFiltered", "quantityFiltered"]),
     ...mapActions("ingredients", ["getIngredients", "getQuantity"]),
+    ...mapMutations("recipes", ["FETCH_RECIPE_UPDATE"]),
   },
   computed: {
     computedIngredients() {
